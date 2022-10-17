@@ -77,6 +77,9 @@ Given two strings, determine if  the scond string is an anagram of the first
 */
 
 function validAnagram(str1,str2){
+
+  // if the length of the two diff strings is unequal we can immediately stop
+  
   if(str1.length !== str2.length){
     return false
   }
@@ -111,3 +114,45 @@ function validAnagram(str1,str2){
 validAnagram('iceman','cinema')
 
 validAnagram('put my thang down flip it and reverse it','ti esrever dna ti pilf nwod gnaht ym tup')
+
+/*
+
+--- Multiple Pointers
+
+
+Had issues with exiting while loop for below
+*/
+/*
+function sumZero(arr){
+  let left = 0;
+  let right = arr.length - 1;
+  while(left < right){
+    let sum = arr[left] + arr[right];
+    if(sum === 0){
+      return [arr[left],arr[right]] ;
+    } else if(sum > 0){
+      right--;
+    } else {
+      left++;
+    }
+  }
+}
+
+
+sumZero([-4,-3,-2,-1,0,1,2,5])
+*/
+
+function countUniqueValues(arr){
+  if(arr.length === 0) console.log(0)
+  let  i = 0
+  for(let j = 1; j < arr.length; j++){
+    if(arr[i] !== arr[j]){
+      i++
+      arr[i] = arr[j]
+    }
+  }
+  console.log(i+1) 
+}
+
+countUniqueValues([1,1,1,2,2,3,4,5,5,5,6,7])
+countUniqueValues([])
