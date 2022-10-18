@@ -149,10 +149,79 @@ function countUniqueValues(arr){
     if(arr[i] !== arr[j]){
       i++
       arr[i] = arr[j]
-    }
+    } 
   }
   console.log(i+1) 
 }
 
 countUniqueValues([1,1,1,2,2,3,4,5,5,5,6,7])
 countUniqueValues([])
+
+/*
+
+Write a function called maxArraySum which accepts an array of integers and 
+a number called n, the number should calculate the max sum of n consecituve elements in an array
+
+
+*/
+
+function maxArraySum(arr,num){
+  let maxSum = 0
+  let tempSum = 0
+  if (arr.length < num) return null
+  for(let i = 0; i < num; i++){
+    maxSum += arr[i]
+  }
+  tempSum = maxSum
+  for(let i = num; i< arr.length; i++){
+    tempSum = tempSum - arr[i-num] +arr[i]
+    maxSum = Math.max(tempSum,maxSum)
+  }
+  return maxSum
+}
+
+/*
+---Divide and Conquer
+
+Thus pattern involves diving a data set into smaller chunks and then repeating a process with a subset of data
+
+An example would be the search function, which given a sorted array of integers, accepts a value and returns the first index in which that value is located.If that value is not represented, it returns -1
+
+search([1,2,3,4,5,6,7],4) - returns 3
+search([1,2,3,4,5,6,7],6) - returns 5
+search([1,2,3,4,5,6,7],11) - returns -1
+
+function search(arr,num){
+  for(let i=0; i < arr.length;i++){
+    if (arr[i] === num){
+      return i
+    }
+  }
+  return -1
+}
+
+Time complexity = O(N)
+*/
+
+function search(arr,val){
+  let min = 0
+  let max = arr.length - 1
+
+  while(min <= max){
+    let middle = Math.floor((min + max)/ 2)
+    let currentElement = arr[middle]
+
+    if(arr[middle] < val){
+      min = middle + 1
+    }
+    else if(arr[middle] > val){
+      max = middle - 1
+    }
+    else {
+      return middle
+    }
+  }
+  return -1
+}
+
+// we reach O(logN) using this method. 
